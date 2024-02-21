@@ -1,0 +1,128 @@
+ul {list-style-type: none;}
+body {font-family: Verdana, sans-serif;
+}
+
+.calendario{
+  padding: 10px;
+  position: relative; /* Adiciona uma posição relativa ao conteúdo */
+  z-index: 1; /* Garante que o conteúdo fique acima de outros elementos */
+  width: 80%;
+}
+
+#headerCalendario {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+#headerCalendario span {
+  font-size: 18px;
+}
+
+/* Month header */
+.month {
+  padding: 70px 25px;
+  display: flex;
+  background: #5F9EA0;
+  text-align: center;
+  display: flex;
+}
+
+/* Month list */
+.month ul {
+    flex:1;
+  margin: 0;
+  padding: 0;
+}
+
+.month ul li {
+  color: white;
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+/* Previous button inside month header */
+.month .prev,
+.month .next {
+     flex:1;
+  cursor: pointer;
+  padding-top: 10px;
+}
+
+/* Previous button */
+.month .prev {
+  float: left;
+}
+
+/* Next button */
+.month .next {
+  float: right;
+}
+
+/* Weekdays (Mon-Sun) */
+.weekdays {
+  margin: 0;
+  padding: 10px 10px;
+  background-color:#ddd;
+  display: flex;
+
+}
+
+.weekdays li {
+  flex: 1;
+  color: #666;
+  text-align: center;
+  justify-content: space-between;
+}
+
+/* Days (1-31) */
+.days {
+  padding: 10px 0;
+  background: #eee;
+  margin: 0;
+}
+
+.days li {
+  list-style-type: none;
+  display: inline-block;
+  width: 14.1%;
+  text-align: center;
+  margin-bottom: 5px;
+  font-size:14px;
+  color: #777;
+}
+
+/* Highlight the "current" day */
+.days li .active {
+  padding: 5px;
+  background: #1abc9c;
+  color: white !important
+}
+
+.days li .inactive {
+  padding: 5px;
+  background: #eee;
+  color: #aaa;
+}
+
+.days li .reservado {
+  padding: 5px;
+  background: #f88;
+  color: #ddd;
+}
+
+.days li .botaoDia {
+    padding: 5px;
+    text-decoration: none;
+    background-color: #eee; /* Cor de fundo do botão */
+    color: #111; /* Cor do texto do botão */
+    border: none;
+    border-radius: 0px; /* Borda arredondada, opcional */
+    cursor: pointer;
+}
+
+.days li .botaoDia:hover {
+    background-color: #2980b9; /* Cor de fundo do botão ao passar o mouse (hover) */
+}

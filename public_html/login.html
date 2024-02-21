@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="styles.css">
+        <meta charset="UTF-8">
+        <title>Login</title>
+    </head>
+    
+    <body>
+        <div class="caixa">
+            <div class="cabecalho">
+                <h2>Login</h2>
+                <button class="fechar" onclick="fecharCaixa()">
+                    <img src="icones/fechar.png" alt="Fechar">
+                </button>
+            </div>
+            <div class="conteudo">
+                <form method="post" action="../include/login.php">
+                    <p>Usuário</p>
+                    <p><input type="text" id="usuario" name="usuario"></p>
+                    <p>Senha</p>
+                    <p><input type="password" id="senha" name="senha"></p>
+                    <p><input type="submit" value="Entrar"></p>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

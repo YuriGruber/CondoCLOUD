@@ -1,0 +1,209 @@
+<?php
+    include('dao/dao.php');
+?>
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            var dataAtual = new Date();
+            var diasReservados = [];
+            var mes = dataAtual.getMonth() + 1;
+            var ano = dataAtual.getFullYear();
+                        
+            function gerarCalendario() {
+                var areaSelecionada = document.getElementById("selecaoArea").value;
+                $.ajax({
+                    type: "POST",
+                    url: "select/dias_reservados.php",
+                    dataType: 'json',
+                    data: { area: areaSelecionada, mes: mes, ano: ano },
+                    success: function (resposta) {
+                        console.log(resposta);
+                        diasReservados = [];
+                        for(var index in resposta){
+                            diasReservados.push(parseInt(resposta[index]));
+                        }
+
+                        var ultimoDiaDoMes = new Date(ano, mes, 0);
+                        var primeiroDiaDoMes = new Date(ano, mes - 1, 1);
+                        var diaDaSemanaDoPrimeiroDia = primeiroDiaDoMes.getDay();                      
+
+                        var container = document.getElementById('diasCalendario');
+                        var content = "";
+                        
+                        headerCalendario.innerHTML = mesExtenso(mes) + "<br>" + ano;
+                        
+                        // Imprimir células em branco que pertençam a meses anteriores
+                        while(diaDaSemanaDoPrimeiroDia > 0){
+                            content += "<li></li>";
+                            diaDaSemanaDoPrimeiroDia--;
+                        }
+
+                        for(var i = 1; i <= ultimoDiaDoMes.getDate(); i++){
+                            if(diasReservados.includes(i)){
+                                content += "<li><span class='reservado'>" + i + "</span></li>";
+                            }else{
+                                if(mes < dataAtual.getMonth() + 1 || ano < dataAtual.getFullYear() || (i < dataAtual.getDate() && mes === dataAtual.getMonth() + 1 && ano === dataAtual.getFullYear())){
+                                    content += "<li><span class='inactive'>" + i + "</span></li>";
+                                }else if(i == dataAtual.getDate() && mes === dataAtual.getMonth() + 1 && ano === dataAtual.getFullYear()){
+                                    content += "<li><span class='active'>" + i + "</span></li>";
+                                }else{
+                                    content += "<li><input class='botaoDia' type='button' value=" + i + " onclick='confirmarReserva(this.value)'></li>";
+                                }                           
+                            }
+                        }
+
+                        // Adiciona o conteúdo ao container
+                        container.innerHTML = content;                    
+                    },
+                    error: function (erro) {
+                        console.error('Erro na requisição:', erro);
+                    }
+                });
+            }
+            
+            function confirmarReserva(dia){
+                var combobox = document.getElementById("selecaoArea");
+                var areaSelecionada = combobox.value;
+                
+                var confirmacao = confirm("Confirmar reserva de " + combobox.options[combobox.value-1].text + " para o dia " + DD_mesExtenso_diaMes(dia, mes) + "?");
+                
+                if(confirmacao){
+                    $.ajax({
+                        type: "POST",
+                        url: "insert/reserva.php",
+                        dataType: 'json',
+                        data: { area: areaSelecionada, dia: dia, mes: mes, ano: ano },
+                        success: function (resposta) {
+                            alert("Espaço reservado com sucesso!");
+                            gerarCalendario();
+                        },
+                        error: function(error) {
+                            alert('Erro na requisição: ' + JSON.stringify(error));
+                        }
+                    });
+                }
+            }
+
+            function atualizarData(step){
+                mes += step;
+                switch(mes){
+                    case 13:
+                        ano++;
+                        mes = 1;
+                        break;
+                    case 0:
+                        ano--;
+                        mes = 12;
+                        break;
+                }               
+                gerarCalendario();                   
+            }
+            
+            function gerarAreas(){
+                $.ajax({
+                    type: "POST",
+                    url: "select/lista_espacos_condominio.php",
+                    dataType: 'json',
+                    success: function (resposta) {                        
+                         // 'resposta' agora é um vetor no formato JSON
+                        console.log(resposta);
+
+                        // Referência ao elemento select
+                        var selectElement = $('#selecaoArea');
+
+                        // Iteração sobre o vetor para criar as opções
+                        for (var i = 0; i < resposta.length; i++) {
+                            var id_area = resposta[i].id_area;
+                            var nome_area = resposta[i].nome_area;
+
+                            // Criação da opção e adição ao select
+                            var option = $('<option>', {
+                                value: id_area,
+                                text: nome_area
+                            });
+
+                            selectElement.append(option);
+                        }
+                        
+                        gerarCalendario();
+                    },
+                    error: function (erro) {
+                        alert('Erro na requisição: ' + JSON.stringify(erro));
+                        console.error('Erro na requisição:', erro);
+                    }                  
+                });
+            }
+            
+        </script>
+        
+        <link rel="stylesheet" href="calendario.css">
+        <meta charset="UTF-8">
+        <title>CC - Reservar Área</title>
+        <script src="js/jquery-3.7.1.js"></script>
+        <script src="js/lib.js"></script>
+    </head>
+    <body>
+        <div>
+            <ul class="responsive-table">
+                <li class='table-row'>
+                    <div class='col col-2' data-label='espaco'>Selecione o espaço: <select id="selecaoArea" name="selecaoArea"><script>gerarAreas();</script></select>
+                </li>
+            </ul>
+        </div>
+        
+        <!-- CALENDARIO -->
+        <div class="calendario">
+            <div class="month">
+                <ul>
+                  <li class="prev" onclick="atualizarData(-1)">&#10094;</li>
+                  <li class="next" onclick="atualizarData(1)">&#10095;</li>
+                  <li id='headerCalendario'></li>
+                </ul>
+            </div>
+
+            <ul class="weekdays">
+              <li>Dom</li>
+              <li>Seg</li>
+              <li>Ter</li>
+              <li>Qua</li>
+              <li>Qui</li>
+              <li>Sex</li>
+              <li>Sab</li>
+            </ul>
+
+            <ul class="days" id="diasCalendario">            
+                <script>//gerarCalendario();</script>
+            </ul>
+        </div>
+        
+        <div>
+            <ul class="days" id="diasCalendario">
+              <li><span class='reservado'>Reservados</span></li>
+              <li><span class='inactive'>Passados</span></li>
+              <li><span class='active'>Atual</span></li>
+              <li><input class='botaoDia' type='button' value='Disponível'></li>
+            </ul>
+        </div>
+        
+        <script>
+                
+            // Esta função será chamada quando o DOM estiver completamente carregado
+            $(document).ready(function () {
+                // Chama a sua função no início do carregamento da página
+                dataAtual = new Date();               
+            });
+                 
+            
+            // Adiciona um ouvinte de eventos ao elemento com id "selecaoArea"
+            $("#selecaoArea").on("change", function () {
+                // Chama a função quando o valor da combobox muda
+                gerarCalendario();
+            });
+            
+            
+        </script>
+        
+    </body>
+</html>

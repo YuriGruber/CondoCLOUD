@@ -1,0 +1,84 @@
+<?php
+    include('dao/dao.php');
+?>
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            function excluirReserva(idReserva, nomeArea, data){
+                var confirmacao = confirm("Cancelar a reserva de " + nomeArea + " de " + DD_mesExtenso_SQL(data) + "?");
+                if(confirmacao){
+                    $.ajax({
+                        type: "POST",
+                        url: "delete/reserva.php",
+                        data: { idReserva: idReserva },
+                        success: function (resposta) {
+                            alert(resposta);
+                            gerarListaReservas();
+                        },
+                        error: function(erro) {
+                            alert('Erro na requisição: ' + erro);
+                        }
+                    });
+                }
+            }
+            
+            function gerarListaReservas(){
+                $.ajax({
+                    type: "POST",
+                    url: "select/lista_reservas.php",
+                    dataType: 'json',
+                    success: function (resposta) {                        
+                        console.log(resposta);
+                        
+                        var linha = "";
+
+                        // Iteração sobre o vetor para criar as opções
+                        for (var i = 0; i < resposta.length; i++) {
+                            var id_reserva= resposta[i].id_reserva;
+                            var nome_area = resposta[i].nome_area;
+                            var data = DD_mesExtenso_SQL(resposta[i].data);
+                            var botao = "<input type='button' id='botaoCancelar' value='Cancelar reserva' onclick='excluirReserva(" + id_reserva + ", " + JSON.stringify(nome_area) + ", " + JSON.stringify(resposta[i].data) + ")'>";
+                            
+                            linha += "<li class='table-row'>";
+                            linha += "<div class='col col-2' data-label='Customer Name'>" + primeiraLetraMaiuscula(nome_area) + "</div>";
+                            linha += "<div class='col col-2' data-label='Amount'>" + data + "</div>";
+                            linha += "<div class='col col-2' data-label='Payment Status'>" + botao + "</div>";
+                            linha += "</li>";
+                        }
+                        
+                        document.getElementById('conteudoTabela').innerHTML = linha;                      
+                    },
+                    error: function (erro) {
+                        console.error('Erro na requisição:', erro);
+                    }                  
+                });
+            }
+        </script>
+        <link rel="stylesheet" href="minhas_reservas.css">
+        <meta charset="UTF-8">
+        <title>CC - Minhas Reservas</title>
+        <script src="js/jquery-3.7.1.js"></script>
+        <script src="js/lib.js"></script>
+    </head>
+    <body>       
+        <div class="container">
+            <h2>Reservas</h2>
+            <ul class="responsive-table">
+              
+              <div id="conteudoTabela" name="conteudoTabela"></div>
+
+            </ul>
+        </div>
+        
+        <script>
+            // Esta função será chamada quando o DOM estiver completamente carregado
+            $(document).ready(function () {
+                // Chama a sua função no início do carregamento da página
+                gerarListaReservas();               
+            });
+        </script>
+        
+    </body>   
+</html>
