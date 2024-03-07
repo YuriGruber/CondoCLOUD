@@ -1,7 +1,3 @@
-<?php
-    include('dao/dao.php');
-?>
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,14 +11,14 @@
                 var areaSelecionada = document.getElementById("selecaoArea").value;
                 $.ajax({
                     type: "POST",
-                    url: "select/dias_reservados.php",
+                    url: "php/selecionar_dias_reservados.php",
                     dataType: 'json',
                     data: { area: areaSelecionada, mes: mes, ano: ano },
                     success: function (resposta) {
                         console.log(resposta);
                         diasReservados = [];
                         for(var index in resposta){
-                            diasReservados.push(parseInt(resposta[index]));
+                            diasReservados.push(parseInt(resposta[index].dia));
                         }
 
                         var ultimoDiaDoMes = new Date(ano, mes, 0);
@@ -72,7 +68,7 @@
                 if(confirmacao){
                     $.ajax({
                         type: "POST",
-                        url: "insert/reserva.php",
+                        url: "php/inserir_reserva.php",
                         dataType: 'json',
                         data: { area: areaSelecionada, dia: dia, mes: mes, ano: ano },
                         success: function (resposta) {
@@ -104,10 +100,9 @@
             function gerarAreas(){
                 $.ajax({
                     type: "POST",
-                    url: "select/lista_espacos_condominio.php",
+                    url: "php/selecionar_espacos.php",
                     dataType: 'json',
                     success: function (resposta) {                        
-                         // 'resposta' agora é um vetor no formato JSON
                         console.log(resposta);
 
                         // Referência ao elemento select
@@ -116,7 +111,7 @@
                         // Iteração sobre o vetor para criar as opções
                         for (var i = 0; i < resposta.length; i++) {
                             var id_area = resposta[i].id_area;
-                            var nome_area = resposta[i].nome_area;
+                            var nome_area = resposta[i].nome_area;                          
 
                             // Criação da opção e adição ao select
                             var option = $('<option>', {
@@ -130,8 +125,8 @@
                         gerarCalendario();
                     },
                     error: function (erro) {
-                        alert('Erro na requisição: ' + JSON.stringify(erro));
-                        console.error('Erro na requisição:', erro);
+                        alert('Erro ao pesquisar espaços: ' + JSON.stringify(erro));
+                        console.error('Erro na requisição:', JSON.stringify(erro));
                     }                  
                 });
             }

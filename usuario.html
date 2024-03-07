@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<? php session_start() ?>
 <html>
     <head>
         <link rel="stylesheet" href="styles.css">
@@ -10,19 +9,33 @@
     </head>
     
     <header>
-            <img class="logo" src="imagens/condocloud_icon.png" alt="Logo">
-            <div>
-                <span class="tituloParte1">CondoCLOUD</span> - <span class="tituloParte2">Soluções Condominiais</span>
-            </div>
-            <div class="nomeMorador">
-            <?php echo $_SESSION['nomeUsuario'] ?>
-          </div>
-            <div class="nomeCondominio">
-                <?php echo "Condomínio ".$_SESSION['nomeCondominio'] ?>
-          </div>
+        <script>
+            $.ajax({
+                url: 'php/sessao.php',
+                method: 'GET',
+                dataType: 'json',
+                success: function(dados) {
+                    var nomeUsuario = dados.nomeUsuario;
+                    var nomeCondominio = dados.nomeCondominio;
+                    document.getElementById('nomeUsuario').innerText = nomeUsuario;
+                    document.getElementById('nomeCondominio').innerText = "Condomínio " + nomeCondominio;
+                },
+                error: function(xhr, status, error) {
+                    alert("Erro ao consultar nomes do usuário / condomínio.");
+                    console.error('Erro ao obter dados do servidor: ' + error);
+                }
+            });
+        </script>
+        
+        <img class="logo" src="imagens/condocloud_icon.png" alt="Logo">
+        <div>
+            <span class="tituloParte1">CondoCLOUD</span> - <span class="tituloParte2">Soluções Condominiais</span>
+        </div>
+        <div class="nomeUsuario" id="nomeUsuario"></div>
+        <div class="nomeCondominio" id="nomeCondominio"></div>
     </header>
     
-    <body> 
+    <body>
         <aside>
             <div class="barraLateral">
                 <a href="#">Unidade</a>
@@ -62,7 +75,7 @@
                 }
               });
             }
-                     
+                                        
             
             function carregarPagina(pagina){
                 $('#paginaContainer').load(pagina);
@@ -73,12 +86,12 @@
               // Exemplo de troca de conteúdo ao clicar em um link
               $('#linkReservaArea').on('click', function(e) {
                 e.preventDefault(); // Evitar o comportamento padrão de navegação do link
-                carregarPagina('reservar_area.php');
+                carregarPagina('calendario_reservas.html');
               });
               
               $('#linkMinhasReservas').on('click', function(e) {
                 e.preventDefault(); // Evitar o comportamento padrão de navegação do link
-                carregarPagina('minhas_reservas.php');
+                carregarPagina('minhas_reservas.html');
               });
             
             // Função para fechar a página carregada e ocultar o container

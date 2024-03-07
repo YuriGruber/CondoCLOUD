@@ -6,6 +6,50 @@ body {
   background-repeat: no-repeat; /* Evita a repetição da imagem */
   font-family: "Lato", sans-serif; /* Fonte do texto */
 }
+/* ======== caixa ======== */
+.caixa {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+.cabecalho {
+    background-color: #f0f0f0;
+    color: #333;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    border-radius: 10px 10px 0 0;
+}
+
+.cabecalho h2 {
+    margin: 0;
+}
+
+.fechar {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.fechar img {
+    width: 20px;
+    height: 20px;
+}
+
+.conteudo {
+    padding: 15px;
+}
+
 
 /* ======== cabeçalho ======== */
 header {
@@ -40,7 +84,7 @@ header .tituloParte2 {
     max-width: 80%; /* Largura máxima para melhor legibilidade */
 }
 
-header .nomeMorador {
+header .nomeUsuario {
   margin-left: auto; /* Empurra o texto para a direita */
   text-align: right; /* Alinha o texto à direita no interior do bloco */
   font-size: 20px; /* Ajuste o tamanho do texto conforme necessário */

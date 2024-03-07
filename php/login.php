@@ -1,5 +1,5 @@
 <?php
-    include('../include/config.php');
+    include('config.php');
 
     if($_SERVER["REQUEST_METHOD"] == 'POST'){
         $usuario = $_POST["usuario"];
@@ -23,7 +23,7 @@
             $_SESSION['nomeCondominio'] = $dados['nome_condominio'];
 
             //Carregar página da área do morador
-            header('Location:../public_html/usuario.html');
+            header('Location:../usuario.html');
             exit();
         }
     }

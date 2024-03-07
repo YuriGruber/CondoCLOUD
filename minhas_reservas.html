@@ -1,7 +1,3 @@
-<?php
-    include('dao/dao.php');
-?>
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -11,10 +7,10 @@
                 if(confirmacao){
                     $.ajax({
                         type: "POST",
-                        url: "delete/reserva.php",
+                        url: "php/excluir_reserva.php",
                         data: { idReserva: idReserva },
                         success: function (resposta) {
-                            alert(resposta);
+                            alert(resposta.mensagem);
                             gerarListaReservas();
                         },
                         error: function(erro) {
@@ -27,7 +23,7 @@
             function gerarListaReservas(){
                 $.ajax({
                     type: "POST",
-                    url: "select/lista_reservas.php",
+                    url: "php/selecionar_reservas_usuario.php",
                     dataType: 'json',
                     success: function (resposta) {                        
                         console.log(resposta);
@@ -82,3 +78,4 @@
         
     </body>   
 </html>
+
