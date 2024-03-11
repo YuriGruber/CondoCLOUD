@@ -1,6 +1,7 @@
 <?php
-include('config.php');
-include('lib.php');
+session_start();
+include(dirname(__FILE__)."/../config.php");
+include 'lib.php';
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $idArea = $_POST['area'];

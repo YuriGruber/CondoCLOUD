@@ -11,7 +11,7 @@
                 var areaSelecionada = document.getElementById("selecaoArea").value;
                 $.ajax({
                     type: "POST",
-                    url: "php/selecionar_dias_reservados.php",
+                    url: "php/query/selecionar_dias_reservados.php",
                     dataType: 'json',
                     data: { area: areaSelecionada, mes: mes, ano: ano },
                     success: function (resposta) {
@@ -68,7 +68,7 @@
                 if(confirmacao){
                     $.ajax({
                         type: "POST",
-                        url: "php/inserir_reserva.php",
+                        url: "php/query/inserir_reserva.php",
                         dataType: 'json',
                         data: { area: areaSelecionada, dia: dia, mes: mes, ano: ano },
                         success: function (resposta) {
@@ -100,7 +100,7 @@
             function gerarAreas(){
                 $.ajax({
                     type: "POST",
-                    url: "php/selecionar_espacos.php",
+                    url: "php/query/selecionar_espacos_condominio.php",
                     dataType: 'json',
                     success: function (resposta) {                        
                         console.log(resposta);
@@ -125,8 +125,7 @@
                         gerarCalendario();
                     },
                     error: function (erro) {
-                        alert('Erro ao pesquisar espaços: ' + JSON.stringify(erro));
-                        console.error('Erro na requisição:', JSON.stringify(erro));
+                        console.error(JSON.stringify(erro));
                     }                  
                 });
             }
@@ -198,7 +197,6 @@
             });
             
             
-        </script>
-        
+        </script>       
     </body>
 </html>

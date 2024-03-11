@@ -7,7 +7,7 @@
                 if(confirmacao){
                     $.ajax({
                         type: "POST",
-                        url: "php/excluir_reserva.php",
+                        url: "php/query/excluir_reserva.php",
                         data: { idReserva: idReserva },
                         success: function (resposta) {
                             alert(resposta.mensagem);
@@ -23,7 +23,7 @@
             function gerarListaReservas(){
                 $.ajax({
                     type: "POST",
-                    url: "php/selecionar_reservas_usuario.php",
+                    url: "php/query/selecionar_reservas_usuario.php",
                     dataType: 'json',
                     success: function (resposta) {                        
                         console.log(resposta);
