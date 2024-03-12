@@ -1,4 +1,8 @@
-### 1.Identificação
+<div align="center">
+    <img src='./imagens/condocloud_background.png'>
+</div>
+
+# 1.Identificação
 ## a. Identidade Visual do projeto
   Identidade foi gerada através da IA Microsoft Designer
 ## b. Redes sociais do projeto
@@ -13,7 +17,7 @@
 
 ## d. Data criação do documento: 11.03.2024
 
-### 2. Introdução
+# 2. Introdução
 ## a. Objetivo do projeto
   Desenvolver um sistema de gestão de condomínios, chamado CondoCloud, para facilitar a administração de espaços comuns, comunicação entre moradores, síndicos e administração,  manter um registro atualizado dos dados dos moradores e do condomínio.
 ## b. Escopo do projeto
@@ -29,13 +33,13 @@
   (Link da Prototipação) -
  O produto será considerado aceito se todas as funcionalidades do MVP estiverem implementadas conforme especificado nos requisitos.
 
-### 3. Matriz de Riscos
+# 3. Matriz de Riscos
   Risco: Falta de recursos , Impacto: Alto , Probabilidade : Média , Mitigação : Contratação de mais membros da equipe 
   Risco: Mudança nos requisitos  , Impacto: Médio  , Probabilidade : Alta  , Mitigação : Estabelecer um processo de gerenciamento de mudanças 
   Risco: Falha na segurança   , Impacto: Muito Alto  , Probabilidade :  Baixa  , Mitigação : Implementação de protocolos de segurança robustos 
   Risco: Interrupção do serviço    , Impacto: Alto  , Probabilidade :  Baixa  , Mitigação : Implementação de backup e redundância no sistema 
   
-### 4. Organização do Projeto
+# 4. Organização do Projeto
 ## a. Cronograma
   Desenvolvimento do Frontend: 4 semanas
   Desenvolvimento do Backend: 6 semanas
@@ -48,7 +52,7 @@
   Implantação e Treinamento: karoline , Matheus
 (Link do trello)
 
-### 5. Conclusão
+# 5. Conclusão
 ## a. Recursos que serão utilizados (tecnologias, ferramentas de apoio, linguagem de programação)
   Tecnologias: HTML, PHP, JavaScript
   Ferramentas de apoio: GitHub, Trello
