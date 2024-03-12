@@ -2,7 +2,7 @@
     <img src='./imagens/condocloud_background.png'>
 </div>
 
-# 1.Identificação
+# 1. Identificação
 ## a. Identidade Visual do projeto
   Identidade foi gerada através da IA Microsoft Designer
 ## b. Redes sociais do projeto
@@ -21,15 +21,18 @@
 ## a. Objetivo do projeto
   Desenvolver um sistema de gestão de condomínios, chamado CondoCloud, para facilitar a administração de espaços comuns, comunicação entre moradores, síndicos e administração,  manter um registro atualizado dos dados dos moradores e do condomínio.
 ## b. Escopo do projeto
-• Principais entregas do projeto
+  Principais entregas do projeto
   <ul>
     <li> Sistema web funcional - mínimo 4 itens funcionando</li>
     <li>Documentação do sistema</li>
     <li> Treinamento para administradores do condomínio</li>
-• Objetivos do projeto (itens quantificáveis que determinam se o projeto foi um sucesso ou não)
+    </ul>
+    Objetivos do projeto (itens quantificáveis que determinam se o projeto foi um sucesso ou não)
+    <ul>
   <li>Desenvolver e lançar o MVP do CondoCloud dentro do prazo estabelecido
   <li>Garantir que o sistema atenda às necessidades dos moradores ,síndicos e da administração do condomínio
-• Critérios de aceitação do produto
+• Critérios de aceitação do produto</li>
+  </ul>
   (Link da Prototipação) -
  O produto será considerado aceito se todas as funcionalidades do MVP estiverem implementadas conforme especificado nos requisitos.
 
