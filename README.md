@@ -4,10 +4,13 @@
 ## b. Redes sociais do projeto
   A criação acontecerá depois da finalização do projeto.
 ## c. Equipe : 
-  Karoline Lima Sousa - kl.karoline
-  Matheus Marques Eiras 
-  Ricardo Yoshida Takeda
-  Yuri Arnold Gruber
+<ul>
+    <li> Karoline Lima Sousa - kl.karoline </li>
+    <li> Matheus Marques Eiras </li>
+    <li> Ricardo Yoshida Takeda </li>
+    <li> Yuri Arnold Gruber</li>
+</ul>
+
 ## d. Data criação do documento: 11.03.2024
 
 ### 2. Introdução
@@ -15,14 +18,16 @@
   Desenvolver um sistema de gestão de condomínios, chamado CondoCloud, para facilitar a administração de espaços comuns, comunicação entre moradores, síndicos e administração,  manter um registro atualizado dos dados dos moradores e do condomínio.
 ## b. Escopo do projeto
 • Principais entregas do projeto
-  Sistema web funcional - mínimo 4 itens funcionando
-  Documentação do sistema
-  Treinamento para administradores do condomínio
+  <ul>
+    <li> Sistema web funcional - mínimo 4 itens funcionando</li>
+    <li>Documentação do sistema</li>
+    <li> Treinamento para administradores do condomínio</li>
 • Objetivos do projeto (itens quantificáveis que determinam se o projeto foi um sucesso ou não)
-  Desenvolver e lançar o MVP do CondoCloud dentro do prazo estabelecido
-  Garantir que o sistema atenda às necessidades dos moradores ,síndicos e da administração do condomínio
+  <li>Desenvolver e lançar o MVP do CondoCloud dentro do prazo estabelecido
+  <li>Garantir que o sistema atenda às necessidades dos moradores ,síndicos e da administração do condomínio
 • Critérios de aceitação do produto
-(Link da Prototipação) - O produto será considerado aceito se todas as funcionalidades do MVP estiverem implementadas conforme especificado nos requisitos.
+  (Link da Prototipação) -
+ O produto será considerado aceito se todas as funcionalidades do MVP estiverem implementadas conforme especificado nos requisitos.
 
 ### 3. Matriz de Riscos
   Risco: Falta de recursos , Impacto: Alto , Probabilidade : Média , Mitigação : Contratação de mais membros da equipe 
