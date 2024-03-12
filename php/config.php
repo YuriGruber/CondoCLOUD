@@ -1,6 +1,6 @@
 <?php
     
-$host = "localhost";
+$host = "db";
 $database = "condominio";
 $user = "postgres";
 $password = "admin";

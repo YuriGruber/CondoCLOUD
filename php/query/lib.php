@@ -21,3 +21,4 @@ function encerrarQuery($query, $mensagemDeSucesso){
     header('Content-Type: application/json');
     echo json_encode($resposta);
 }
+
