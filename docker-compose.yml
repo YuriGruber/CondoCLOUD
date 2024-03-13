@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  apache:
+    build: ./docker/apache/
+    restart: always
+    ports:
+      - '80:80'
+    volumes:
+      - '.:/var/www/html'
+    depends_on:
+      - db
+    
+  db:
+    build: ./docker/db/
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: condominio
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./banco/init-docker/init.sql:/docker-entrypoint-initdb.d/init.sql
